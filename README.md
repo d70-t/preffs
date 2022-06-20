@@ -5,7 +5,7 @@ parquet-reference-filesystem
 This is a fsspec-reference filesystem based on `parquet`-files. The parquet data must look like:
 
 | key | path | offset | size | raw |
-| --- | ---- | ------ | ---- | --- |
+|:---:|:----:|:------:|:----:|:---:|
 | a/b | a.dat | 123 | 14 | - |
 | a/b | b.dat | 12 | 17 | - |
 | b   | - | - | - | foo |
