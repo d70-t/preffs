@@ -5,6 +5,7 @@ import pandas as pd
 import pytest
 
 from preffs import PRefFileSystem
+import fsspec
 
 
 @pytest.fixture
@@ -49,3 +50,6 @@ def test_mapper(testdata):
     m = PRefFileSystem(testdata).get_mapper()
     assert m["a/b"] == b"01236789"
 
+def test_mapper2(testdata):
+    m = fsspec.get_mapper("preffs::" + testdata)
+    assert m["a/b"] == b"01236789"
