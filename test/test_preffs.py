@@ -29,3 +29,23 @@ def test_basic_preffs(testdata):
     assert fs.cat_file("a/b") == b"01236789"
     assert fs.cat_file("a/c") == b"0123456789"
     assert fs.cat_file("b") == b"test"
+
+def test_ls(testdata):
+    fs = PRefFileSystem(testdata)
+    assert fs.ls("a", detail=False) == ["a/b", "a/c"]
+    assert fs.ls("", detail=False) == ["a", "b"]
+    assert fs.ls("a/", detail=False) == ["a/b", "a/c"]
+
+def test_exists(testdata):
+    fs = PRefFileSystem(testdata)
+    assert fs.exists("a")
+    assert fs.exists("a/")
+    assert fs.exists("a/b")
+    assert fs.exists("b")
+    assert not fs.exists("c")
+    assert not fs.exists("c/")
+
+def test_mapper(testdata):
+    m = PRefFileSystem(testdata).get_mapper()
+    assert m["a/b"] == b"01236789"
+
