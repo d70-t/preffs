@@ -1,5 +1,7 @@
 # PREFFS
 
+**WARNING:** this is experimental software, it seems to work on the specific use cases it's being tried with (i.e. opening kerchunk-like zarr's), but I'd not be surprised if unexpected behaviour comes up in any corner.
+
 parquet-reference-filesystem
 
 This is a fsspec-reference filesystem based on `parquet`-files. The parquet data must look like:
@@ -15,4 +17,4 @@ Where `key` is the filename as seen by the users of the preffs-filesystem, `path
 
 ## opening
 
-Just like anything in `fsspec`. You can use ther `preffs::` protocol, e.g. `xr.open_zarr("preffs::some.parquet")`.
+Just like anything in `fsspec`. You can use the `preffs::` protocol, e.g. `xr.open_zarr("preffs::some.parquet")`.
