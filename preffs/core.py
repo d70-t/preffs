@@ -50,9 +50,23 @@ class PRefFileSystem(AsyncFileSystem):
     def __init__(
             self,
             fo,
+            prefix=None,
             **kwargs):
         super().__init__(**kwargs)
-        self._df = pd.read_parquet(fo)
+        target_options = kwargs.get("target_options", {})
+        target_protocol = kwargs.get("target_protocol", None)
+
+        if target_protocol:
+            extra = {"protocol": target_protocol}
+        else:
+            extra = {}
+
+        with fsspec.open(fo, "rb", **target_options, **extra) as fh:
+            self._df = pd.read_parquet(fh)
+
+        if prefix is not None:
+            self._df['path'] = prefix+self._df['path']
+
         self._fss = {}
 
     def get_fs(self, protocol):
