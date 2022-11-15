@@ -2,7 +2,7 @@ import pandas as pd
 
 import fsspec
 from fsspec.spec import AbstractFileSystem
-from fsspec.asyn import AsyncFileSystem
+from fsspec.asyn import AsyncFileSystem, sync
 import asyncio
 from functools import lru_cache
 
