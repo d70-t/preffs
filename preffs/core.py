@@ -232,7 +232,7 @@ class PRefFileSystem(AsyncFileSystem):
                         if on_error == "return":
                             out[p] = e
 
-            elif self.fss[proto].async_impl:
+            elif self.get_fs(proto).async_impl:
                 # TODO: asyncio.gather on multiple async FSs
                 out.update(
                     sync(
